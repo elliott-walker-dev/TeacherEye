@@ -1,0 +1,54 @@
+#container{
+	width: 100%;
+	position: fixed;
+	padding:10px;
+	top: 50px;
+}
+.classroom{
+	padding-left: 15px;
+}
+
+
+.permissions{
+	border: 2px solid black;
+}
+
+.list-group-item button{
+	display: none;
+}
+.list-group-item:hover button{
+	display: inline;
+}
+
+/*.glyphicon{
+	padding: 10px;
+	border-radius: 8px;
+}
+.glyphicon-pencil{
+	background-color: lime;
+}
+.glyphicon-remove{
+	background-color: red;
+}
+*/
+.new_item{
+	background-color: lightgrey;
+}
+.permission_list{
+	display: inline;
+	width: 80%;
+	margin-right:0px;
+}
+
+.student_card{
+	height: 200px;
+	width: 200px;
+	background-color: lightgrey;
+	margin:10px;
+	border: 1px solid black;
+}
+
+.list_title{
+	height: 40px;
+}
+
