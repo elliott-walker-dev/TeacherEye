@@ -8,7 +8,7 @@ var express        = require('express');
 var app            = express();
 var bodyParser     = require('body-parser');
 var methodOverride = require('method-override');
-var morgan = require("morgan");
+// var morgan = require("morgan");
 
 
 
@@ -23,7 +23,7 @@ app.use(methodOverride('X-HTTP-Method-Override'));
 app.use(express.static(__dirname + '/public')); 
 
 //----logging------
-app.use(morgan('dev'));
+// app.use(morgan('dev'));
 
 // ---set up api router---
 require('./app/routes')(app); // defer to this file for app routes
