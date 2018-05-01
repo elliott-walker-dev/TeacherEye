@@ -1,49 +1,65 @@
 <link rel="stylesheet" href="../css/adminUI_style.css">
 <div id="nav">
-    <div class="nav_link nav_banner">
-        T Eye Teacher's Portal
+    <div class="nav_title nav_banner">
+        <div class="col-md-4" style="text-align: left;">
+        	T Eye Teacher's Portal
+        </div>
+        <div class="col-md-2"></div>
+        <div class="col-md-6">
+        	<div ng-show="!isAddingClass">
+				<div class="dropdown col-md-8" ng-show="classList.length">
+					<button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					{{selectedClass.name}}
+					</button>
+					<label style="margin-left:20px;">{{selectedClass.key}}</label>
+					
+					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+						<li ng-repeat="class in classList" class="item-select class_select">
+							<span>
+								<label class="dropdown-item" ng-click="onSelectClass(class)">{{class.name}} : {{class.key}}</label>
+							</span>
+								<span><button class="glyphicon glyphicon-remove btn-small btn-danger pull-right"ng-click="removeClass(class)"></button></span>
+						</li>
+					</div>
+				</div>
+	        	<button ng-click="classToggle()" class="glyphicon glyphicon-plus btn btn-success" style="margin-left: 50px;">
+        	</div>
+        	<div ng-show="isAddingClass" class="add_class_dropdown form-inline">
+        		<input ng-model="newClassName" type="text" class="col-sm-4 form-control" placeholder="Class Name"></input>
+        		<button ng-click="addNewClass()" class="glyphicon glyphicon-plus btn btn-success col-sm-2" ></button>
+        		<button ng-click="cancelClassAdd()" class="glyphicon glyphicon-remove btn btn-danger col-sm-2"></button>
+        	</div>
+        </div>
     </div>
 </div>
-<div data-ng-init="init()" style="width:100%">
+<div data-ng-init="refresh()" style="width:100%">
 	<div id="container">
 		<div ng-show="showPermissions" class="permissions col-md-3 list-group">
-			<div>
+			<div class="list_section">
 				<div class="list_title">
-					<span>Blacklist</span>
-					<button ng-click="toggleBlackList()" class="glyphicon glyphicon-chevron-down btn btn-primary pull-right"></button>
-				</div>
-				<div ng-show="showBlackList">
-					<span>These sites will be blocked</span>
-					<span><button ng-click="addNewlistItem()" class="glyphicon glyphicon-plus btn btn-success "></button></span>
-					<div ng-show="flag" class="list-group-item new_item">
-						<input ng-model="newItem" class="permission_list"></input>
-						<button ng-click="onItemAdd()" class="btn btn-success">+</button>
-					</div>
-
-					<div ng-repeat="val in blacklistItems" class="list-group-item">
-						<input ng-model="val.domain" class="permission_list"></input>
-						<button type="button" class=" glyphicon glyphicon-plus btn btn-danger pull-right" aria-label="Left Align">
+					<div class="dropdown col-md-12">
+						<button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						{{permissions.label}}
 						</button>
+						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+							<li class="item-select class_select"><label class="dropdown-item" ng-click="selectBlacklist()">Blacklist</label></li>
+							<li class="item-select class_select"><label class="dropdown-item" ng-click="selectWhitelist()">Whitelist</label></li>
+						</div>
+					</div>
+					<div style="margin-bottom:12px;">
+						<label style="margin-left:15px;margin-top:7px; color: white">{{permissions.about}}</label>
+					<span><button ng-click="addNewlistItem()" class="glyphicon glyphicon-plus btn pull-right" ng-class="{ 'glyphicon-chevron-up btn-danger': flag, 'glyphicon-chevron-down btn-success' : !flag }"></button></span>
 					</div>
 				</div>
-			</div>
-
-			<div>
-				<div class="list_title">
-					<span>Whitelist</span>
-					<button ng-click="toggleWhiteList()" class="glyphicon glyphicon-chevron-down btn btn-primary pull-right"></button>
-				</div>
-				<div ng-show="showWhiteList">
-					<span>All Sites but these will be blocked</span>
-					<span><button ng-click="addNewlistItem()" class="glyphicon glyphicon-plus btn btn-success"></button></span>
+				<div class="show_list">
 					<div ng-show="flag" class="list-group-item new_item">
-						<input ng-model="newItem" class="permission_list"></input>
-						<button ng-click="onItemAdd()" class="btn btn-success">+</button>
+						<input ng-model="newDomainName" class="permission_list"></input>
+						<button ng-click="onItemAdd(permissions.action)" class="glyphicon glyphicon-plus btn btn-success"></button>
 					</div>
 
-					<div ng-repeat="val in whitelistItems" class="list-group-item">
-						<input ng-model="val.domain" class="permission_list"></input>
-						<button type="button" class=" glyphicon glyphicon-plus btn btn-danger pull-right" aria-label="Left Align">
+					<div ng-repeat="domain in permissionListItems" class="list-group-item">
+						<input ng-model="domain" class="permission_list"></input>
+						<button ng-click="removeDomain(permissions.action,domain)" class=" glyphicon glyphicon-remove btn btn-danger pull-right" aria-label="Left Align">
 						</button>
 					</div>
 				</div>
@@ -52,7 +68,16 @@
 
 		<div class="classroom col-md-9">
 			<div ng-repeat="student in studentList" class="student_card col-md-1">
-				{{student}}
+				<div>{{student.name}}</div>
+				<div>{{student.currentSite}}</div>
+				<div style="margin-top:20px;">
+					<label>Last Sites Visited</label>
+					<ul>
+						<li ng-repeat="site in student.lastVisited">
+							<label>{{site}}</label>
+						</li>
+					</ul>
+				</div>
 			</div>
 			
 		</div>

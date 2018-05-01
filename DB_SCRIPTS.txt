@@ -1,0 +1,47 @@
+//DB SCRIPTS
+
+@todo: use this as a script of sorts to create tables through the postgres CLI
+
+CREATE TABLE PERMISSION_LIST(
+   ID SERIAL PRIMARY KEY     NOT NULL,
+   DOMAIN            TEXT    NOT NULL,
+   CLASS             TEXT    NOT NULL REFERENCES CLASSES(KEY) ON DELETE CASCADE,
+   PERMISSION        TEXT    NOT NULL //'blacklist' or 'whitelist' 
+);
+
+CREATE TABLE STUDENTBLACKLIST(
+   ID SERIAL PRIMARY KEY     NOT NULL,
+   DOMAIN         TEXT    NOT NULL,
+);
+
+CREATE TABLE STUDENTS(
+   ID SERIAL PRIMARY KEY     NOT NULL,
+   NAME           TEXT    NOT NULL,
+   CODE              TEXT
+);
+
+CREATE TABLE CLASSES(
+   KEY            TEXT    PRIMARY KEY     NOT NULL,
+   NAME           TEXT    NOT NULL
+);
+
+CREATE TABLE STUDENTS_IN_CLASSES(
+   STUDENT        TEXT   REFERENCES STUDENTS(ID) ON DELETE CASCADE,
+   CLASS          TEXT   REFERENCES CLASSES(KEY) ON DELETE CASCADE
+);
+
+CREATE TABLE CURRENT_PERMISSION(
+   CLASS          PRIMARY KEY TEXT NOT NULL, 
+   PERMISSION     TEXT
+);
+//upsert
+insert into current_permission(class,permission) values('isT6A','blacklist') on conflict(class) do update set permission = 'whitelist';
+
+//select two
+WITH temp AS (
+   SELECT permission 
+   FROM current_permission 
+   WHERE current_permission.class = $1
+)
+
+

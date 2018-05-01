@@ -10,14 +10,54 @@
 
 
 .permissions{
+	padding-top: 10px;
 	border: 2px solid black;
+    overflow-y:scroll; 
+    position:relative;
+    height: 600px;
+}
+
+.dropdown-toggle{
+	background-color: #92afdd;
+    border: 1px solid #92afdd;
+}
+.dropdown-item{
+	color:black;
+}
+.dropdown-menu{
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+.item-select:hover{
+	background-color: #286090;
+}
+.item-select:hover label{
+	color: white;
+}
+
+.list-group-item{
+	background-color: #3c485b !important;
+	border: none;
+	min-height: 50px;
+}
+.list-group-item input{
+	border: none;
+	background-color: #50607a;
+	color: lime;
+	outline: none;
 }
 
 .list-group-item button{
 	display: none;
+	outline: none;
 }
 .list-group-item:hover button{
 	display: inline;
+	outline: none;
+}
+
+.add_class_dropdown{
+	margin-left: 336px;
 }
 
 /*.glyphicon{
@@ -45,10 +85,44 @@
 	width: 200px;
 	background-color: lightgrey;
 	margin:10px;
+	margin-top: 0px;
 	border: 1px solid black;
 }
-
+.list_section{
+	min-height: 70px;
+	margin-bottom: 5px;
+	margin-top: 2px;
+}
 .list_title{
-	height: 40px;
+}
+.show_list{
+	margin-top:3px;
+}
+.add_class_dropdown {
+    min-width: 700px;
+    position: absolute;
+    left: -200px;
+    top: 2px;
+}
+.add_class_dropdown .btn{
+	margin:1px;
+	margin-top:0px;	 
+}
+.class_select{
+	padding:10px;
+}
+.class_select button{
+	margin-left:10px;
+}
+.class_select:hover{
+	cursor: pointer;
+}
+.class_select label:hover{
+	cursor: pointer;
+}
+
+.student_card{
+	background-color: #f2877b;
+	border: 2px solid #f23a26;
 }
 

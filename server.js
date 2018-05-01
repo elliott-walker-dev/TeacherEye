@@ -1,8 +1,9 @@
-// Heroku
-// https://murmuring-citadel-16021.herokuapp.com/
-// https://git.heroku.com/murmuring-citadel-16021.git
+//Heroku 
+// git push heroku master
+// heroku open
+// heroku pg:info
+// heroku config
 //
-
 // ---import---
 var express        = require('express');
 var app            = express();

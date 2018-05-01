@@ -1,12 +1,9 @@
  module.exports = {
-    user: "rzqwvjdjukkgts",
-    password: "93fc2449721571c80247bb86d94c34f689e67ce72bdf958e5de6fa39edefbafb",
-    database: "d2r7j1lrki633r",
+    user: "hpznsifpxukkby",
+    password: "df47204f4f50366c9f73e71a7940d9a54bfd55672eadc5d506dc78a4b0ddb726",
+    database: "dmf1fh53pp0da",
     port: 5432,
-    host: "ec2-107-22-236-252.compute-1.amazonaws.com",
+    host: "ec2-54-204-21-226.compute-1.amazonaws.com",
     ssl: true
 }
-
-
-
 
